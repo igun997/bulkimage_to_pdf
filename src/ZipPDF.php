@@ -39,7 +39,7 @@ class ZipPDF {
         self::log("Generating . . . ");
 
         try {
-            $pdf = new Imagick($img_path);
+            $pdf = new \Imagick($img_path);
             $pdf->setImageFormat('pdf');
             $pdf->writeImages($output, true);
             self::log("Generated !!");
@@ -56,15 +56,19 @@ class ZipPDF {
         $files = [];
         $dir = scandir($dir_pdfs,0);
         natsort($dir);
+        self::log("Detecting Files");
         foreach ($dir as $r ){
             if (count(explode('.',$r)) == 2 && $r != "."){
                 $files[] = $dir_pdfs.$r;
             }
+            self::log($dir_pdfs.$r);
         }
         foreach ($files as $index => $file) {
             echo $file.PHP_EOL;
         }
+        self::log("Run GS");
         $cmd = "gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile={$output}/all.pdf"." ".implode(" ", $files);
         echo shell_exec($cmd);
+        self::log("END OF CRAWL");
     }
 }
