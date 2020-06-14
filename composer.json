@@ -1,5 +1,21 @@
 {
+    "name": "igun997/ziptopdf",
+    "description": "Bulk Image Convert to PDF for Manga",
+    "type": "library",
     "require": {
         "nelexa/zip": "^3.3"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Indra Gunanda",
+            "email": "indra@imceria.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Igun997\\Core\\": "src/"
+        }
     }
 }
